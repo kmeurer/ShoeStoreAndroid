@@ -3,6 +3,7 @@ package com.kevinmeurer.shoestore;
 import android.content.ClipDescription;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,7 +18,7 @@ import android.support.v7.app.ActionBar;
 
 public class BrowseActivity extends ActionBarActivity {
 
-    ArrayList<String[]> cartItems;
+    ArrayList<String> cartItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +27,9 @@ public class BrowseActivity extends ActionBarActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            ArrayList<HashMap<String, Object>> cartItems = (ArrayList<HashMap<String, Object>>) extras.getParcelable("cart_items");
+            ArrayList<String> cartItems = (ArrayList<String>) extras.getStringArrayList("cart_items");
         } else {
-            cartItems = new ArrayList<String[]>();
+            cartItems = new ArrayList<String>();
         }
 
         // set the content view with the layout

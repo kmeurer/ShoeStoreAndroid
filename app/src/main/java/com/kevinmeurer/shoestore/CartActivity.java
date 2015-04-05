@@ -13,36 +13,37 @@ import java.util.HashMap;
 
 
 public class CartActivity extends ActionBarActivity {
-    ArrayList<HashMap<String, Object>> cartItems;
+    ArrayList<String> cartItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cart);
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            ArrayList<HashMap<String, Object>> cartItems = (ArrayList<HashMap<String, Object>>) extras.getParcelable("cart_items");
-        } else {
-            cartItems = new ArrayList<HashMap<String, Object>>();
+            cartItems = (ArrayList<String>) extras.getStringArrayList("cart_items");
         }
 
         TextView cartText = (TextView) findViewById(R.id.cartItems);
         if (cartItems.size() == 0){
-            cartText.setText("You have not added any items to your cart.  Please add items to continue.");
-        } else {
+            cartText.setText("You have not added any items to your cart.\n\nContinue shopping and come back when you are ready to check out!");
+        }
+        else {
             // Create a string to be added to the text view
             String text = "";
             double totalCost = 0;
             for(int i = 0; i < cartItems.size(); i ++){
-                HashMap<String, Object> currentItem = cartItems.get(i);
-                text += currentItem.get("name") + "\n";
-                text += "\t\t\t\t\t\t\t\t" + currentItem.get("price") + "\n\n";
-                totalCost += (double) currentItem.get("price");
+                String currentItem = cartItems.get(i);
+                String[] nameAndPrice = currentItem.split(" ");
+                text += nameAndPrice[0] + "\n";
+                text += "\t\t\t\t\t\t\t\t" + nameAndPrice[1] + "\n\n";
+                totalCost += Double.parseDouble((String) nameAndPrice[1]);
             }
-            text += "____________\nTOTAL:\n "
+            text += "____________\nTOTAL:\n\t\t\t\t\t\t\t\t" + totalCost;
+            cartText.setText(text);
         }
-
-        setContentView(R.layout.activity_cart);
     }
 
 
