@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Outfooted Shoes</string>
+
+    <!--WELCOME SCREEN STRINGS-->
+    <string name="welcome_header">Welcome to Outfooted Shoes</string>
+    <string name="welcome_subheader">Take a step in the right direction...</string>
+    <string name="get_started_message">Find Shoes</string>
+
+    <!--ACTION OPTIONS-->
+    <string name="action_settings">Settings</string>
+
+    <!--BROWSE SCREEN STRINGS-->
+    <string name="title_activity_browse">Browse Shoes</string>
+
+    <!--CART SCREEN STRINGS-->
+    <string name="title_activity_cart">Your Cart</string>
+    <string name="cart_checkout_button">Check Out</string>
+</resources>

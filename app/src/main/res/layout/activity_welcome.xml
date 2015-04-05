@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".WelcomeActivity"
+    android:id="@+id/welcomeLayout"
+    android:background="@color/indigo1">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/welcome_header"
+        android:id="@+id/welcomeHeader"
+        android:textSize="40dp"
+        android:capitalize="words"
+        android:layout_alignWithParentIfMissing="false"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/welcome_subheader"
+        android:id="@+id/welcomeSubheader"
+        android:textSize="26dp"
+        android:textColorHighlight="@color/indigoA100"
+        android:textColor="@color/indigo8"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_below="@+id/welcomeHeader"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="15dp"
+        android:textStyle="italic" />
+
+    <!--GET STARTED BUTTON-->
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/get_started_message"
+        android:id="@+id/getStartedBtn"
+        android:clickable="true"
+        android:textSize="26dp"
+        android:background="@color/indigoA200"
+        android:textColor="@color/primary_light"
+        android:layout_marginBottom="66dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/welcomeSubheader"
+        android:layout_alignStart="@+id/welcomeSubheader"
+        android:onClick="moveToBrowse"/>
+
+</RelativeLayout>

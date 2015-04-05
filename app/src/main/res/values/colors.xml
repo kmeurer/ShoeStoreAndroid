@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Here, we set up a color palette.  These colors were chosen based on Google Material Design's Indigo Color Scheme: http://www.google.com/design/spec/style/color.html#color-color-palette  -->
+
+    <item name="primary_light" type="color">#E8EAF6</item>
+    <item name="primary" type="color">#3F51B5</item>
+    <item name="primary_dark" type="color">#1A237E</item>
+    <item name="primary_accent" type="color">#304FFE</item>
+
+    <!--BASE COLORS-->
+    <item name="indigo1" type="color">#E8EAF6</item>
+    <item name="indigo2" type="color">#C5CAE9</item>
+    <item name="indigo3" type="color">#9FA8DA</item>
+    <item name="indigo4" type="color">#7986CB</item>
+    <item name="indigo5" type="color">#5C6BC0</item>
+    <item name="indigo6" type="color">#3F51B5</item>
+    <item name="indigo7" type="color">#3949AB</item>
+    <item name="indigo8" type="color">#303F9F</item>
+    <item name="indigo9" type="color">#283593</item>
+    <item name="indigo10" type="color">#1A237E</item>
+
+    <!--  HIGHLIGHT COLORS  -->
+    <item name="indigoA100" type="color">#8C9EFF</item>
+    <item name="indigoA200" type="color">#536DFE</item>
+    <item name="indigoA400" type="color">#3D5AFE</item>
+    <item name="indigoA700" type="color">#304FFE</item>
+</resources>
