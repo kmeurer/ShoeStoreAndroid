@@ -4,12 +4,16 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class CartActivity extends ActionBarActivity {
-    ArrayList<String[]> cartItems;
+    ArrayList<HashMap<String, Object>> cartItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +21,25 @@ public class CartActivity extends ActionBarActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            ArrayList<String[]> cartItems = (ArrayList<String[]>) extras.getParcelable("cart_items");
+            ArrayList<HashMap<String, Object>> cartItems = (ArrayList<HashMap<String, Object>>) extras.getParcelable("cart_items");
         } else {
-            cartItems = new ArrayList<String[]>();
+            cartItems = new ArrayList<HashMap<String, Object>>();
+        }
+
+        TextView cartText = (TextView) findViewById(R.id.cartItems);
+        if (cartItems.size() == 0){
+            cartText.setText("You have not added any items to your cart.  Please add items to continue.");
+        } else {
+            // Create a string to be added to the text view
+            String text = "";
+            double totalCost = 0;
+            for(int i = 0; i < cartItems.size(); i ++){
+                HashMap<String, Object> currentItem = cartItems.get(i);
+                text += currentItem.get("name") + "\n";
+                text += "\t\t\t\t\t\t\t\t" + currentItem.get("price") + "\n\n";
+                totalCost += (double) currentItem.get("price");
+            }
+            text += "____________\nTOTAL:\n "
         }
 
         setContentView(R.layout.activity_cart);

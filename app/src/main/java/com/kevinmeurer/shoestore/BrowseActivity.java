@@ -26,7 +26,7 @@ public class BrowseActivity extends ActionBarActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            ArrayList<String[]> cartItems = (ArrayList<String[]>) extras.getParcelable("cart_items");
+            ArrayList<HashMap<String, Object>> cartItems = (ArrayList<HashMap<String, Object>>) extras.getParcelable("cart_items");
         } else {
             cartItems = new ArrayList<String[]>();
         }
@@ -214,32 +214,32 @@ public class BrowseActivity extends ActionBarActivity {
             HashMap<String, Object> shoe1 = new HashMap<String, Object>();
             shoe1.put("price", 50);
             shoe1.put("imgsrc", R.drawable.shoe1);
-            shoe1.put("Name", "New Balance HG7");
+            shoe1.put("name", "New Balance HG7");
 
             HashMap<String, Object> shoe2 = new HashMap<String, Object>();
             shoe2.put("price", 50);
             shoe2.put("imgsrc", R.drawable.shoe1);
-            shoe2.put("Name", "New Balance HG7");
+            shoe2.put("name", "New Balance HG7");
 
             HashMap<String, Object> shoe3 = new HashMap<String, Object>();
             shoe3.put("price", 50);
             shoe3.put("imgsrc", R.drawable.shoe1);
-            shoe3.put("Name", "New Balance HG7");
+            shoe3.put("name", "New Balance HG7");
 
             HashMap<String, Object> shoe4 = new HashMap<String, Object>();
             shoe4.put("price", 50);
             shoe4.put("imgsrc", R.drawable.shoe1);
-            shoe4.put("Name", "New Balance HG7");
+            shoe4.put("name", "New Balance HG7");
 
             HashMap<String, Object> shoe5 = new HashMap<String, Object>();
             shoe5.put("price", 50);
             shoe5.put("imgsrc", R.drawable.shoe1);
-            shoe5.put("Name", "New Balance HG7");
+            shoe5.put("name", "New Balance HG7");
 
             HashMap<String, Object> shoe6 = new HashMap<String, Object>();
             shoe6.put("price", 50);
             shoe6.put("imgsrc", R.drawable.shoe1);
-            shoe6.put("Name", "New Balance HG7");
+            shoe6.put("name", "New Balance HG7");
 
             shoeData = new ArrayList<HashMap<String, Object>>();
             shoeData.add(shoe1);
@@ -307,7 +307,7 @@ public class BrowseActivity extends ActionBarActivity {
             shoeView = (ImageView) relativeLayout.findViewWithTag("shoeImage");
             shoeInfo = (TextView) relativeLayout.findViewWithTag("shoeInfo");
             shoeView.setImageResource((Integer) shoeData.get(position).get("imgsrc"));
-            shoeInfo.setText("\t\t" + shoeData.get(position).get("Name") + "\n\t\t$" + shoeData.get(position).get("price"));
+            shoeInfo.setText("\t\t" + shoeData.get(position).get("name") + "\n\t\t\t\t\t$" + shoeData.get(position).get("price"));
 
             return relativeLayout;
         }
