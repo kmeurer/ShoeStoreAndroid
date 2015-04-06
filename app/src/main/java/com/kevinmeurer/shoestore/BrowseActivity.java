@@ -3,7 +3,6 @@ package com.kevinmeurer.shoestore;
 import android.content.ClipDescription;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,8 +10,6 @@ import android.view.MenuItem;
 import android.view.*;
 import android.widget.*;
 import android.content.ClipData;
-import android.graphics.*;
-import android.graphics.drawable.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,7 +17,7 @@ import android.support.v7.app.ActionBar;
 
 public class BrowseActivity extends ActionBarActivity {
 
-    ArrayList<String> cartItems;
+    ArrayList<String> cartItems = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +27,6 @@ public class BrowseActivity extends ActionBarActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ArrayList<String> cartItems = (ArrayList<String>) extras.getStringArrayList("cart_items");
-        } else {
-            cartItems = new ArrayList<String>();
         }
 
         // set the content view with the layout
@@ -71,7 +66,7 @@ public class BrowseActivity extends ActionBarActivity {
         });
 
         // CART VIEW SETUP
-        LinearLayout cartView = (LinearLayout) findViewById(R.id.cartView);
+        RelativeLayout cartView = (RelativeLayout) findViewById(R.id.cartView);
         // set up listener for drag events to track the cart
         cartView.setOnDragListener(new cartDragEventListener());
 

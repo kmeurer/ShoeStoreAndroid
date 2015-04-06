@@ -45,8 +45,6 @@ public class CartActivity extends ActionBarActivity {
                 String[] nameAndPrice = currentItem.split("\n");
                 text += nameAndPrice[0];
                 text += "                      " + nameAndPrice[1] + "\n";
-                Toast.makeText(this, "" + nameAndPrice[1],
-                        Toast.LENGTH_LONG).show();
                 totalCost += Double.parseDouble((String) nameAndPrice[1]);
             }
             text += "______________________\nTOTAL:  $" + totalCost;
@@ -78,7 +76,7 @@ public class CartActivity extends ActionBarActivity {
         } else if (id == R.id.home) {
             Toast.makeText(this, "pressed",
                     Toast.LENGTH_LONG).show();
-//            this.finish();
+            this.finish();
             return true;
         }
 
@@ -87,11 +85,12 @@ public class CartActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this, "pressed",
-                Toast.LENGTH_LONG).show();
-        View currentView = findViewById(R.id.cartLayout);
-        Intent moveToBrowse = new Intent(currentView.getContext(), BrowseActivity.class);
-        moveToBrowse.putExtra("cart_items", cartItems);
-        startActivity(moveToBrowse);
+//        Toast.makeText(this, "pressed",
+//                Toast.LENGTH_LONG).show();
+//        View currentView = findViewById(R.id.cartLayout);
+//        Intent moveToBrowse = new Intent(currentView.getContext(), BrowseActivity.class);
+//        moveToBrowse.putExtra("cart_items", cartItems);
+
+        super.onBackPressed();
     }
 }
