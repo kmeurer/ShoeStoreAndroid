@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.*;
 import android.widget.*;
 import android.content.ClipData;
+import android.graphics.*;
+import android.graphics.drawable.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -45,7 +47,8 @@ public class BrowseActivity extends ActionBarActivity {
             // Override on item long click
             public boolean onItemLongClick(AdapterView<?> parent, View v, int position, long id) {
             // Create a new ClipData.Item from the ImageView object's tag
-            ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
+            TextView textToSend = (TextView) v.findViewWithTag("shoeInfo");
+            ClipData.Item item = new ClipData.Item((CharSequence) textToSend.getText());
 
             // list the mimeTypes for the ClipData
             String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN, ClipDescription.MIMETYPE_TEXT_PLAIN};
@@ -62,8 +65,7 @@ public class BrowseActivity extends ActionBarActivity {
                     null,      // no need to use local data
                     0          // flags (not currently used, set to 0)
             );
-            Toast.makeText(BrowseActivity.this, "" + position,
-                    Toast.LENGTH_SHORT).show();
+
             return true;
             }
         });
@@ -73,6 +75,7 @@ public class BrowseActivity extends ActionBarActivity {
         // set up listener for drag events to track the cart
         cartView.setOnDragListener(new cartDragEventListener());
 
+        // set a back button on the action bar for user convenience
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
     }
@@ -104,7 +107,7 @@ public class BrowseActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //
+    // Move to separate cart activity.
     public void moveToCartView(View v){
         Intent moveToCart = new Intent(v.getContext(), CartActivity.class);
         moveToCart.putExtra("cart_items", cartItems);
@@ -175,8 +178,19 @@ public class BrowseActivity extends ActionBarActivity {
                 case DragEvent.ACTION_DROP:
                     // Gets the item containing the dragged data
                     ClipData.Item item = event.getClipData().getItemAt(0);
+                    // get the text from our item and prune it for our data, the name of the product and its price
+                    String itemText = (String) item.getText();
+                    // get rid of indentations
+                    itemText = itemText.replace("\t", "");
+                    itemText = itemText.replace("$", "");
+                    // split into an array of 2 items, the name and the price
+                    String[] nameAndPrice = itemText.split("\n");
 
+                    // Add the item to our cart
+                    cartItems.add(itemText);
 
+                    Toast.makeText(BrowseActivity.this, "Added one " + nameAndPrice[0] + " to the cart.",
+                            Toast.LENGTH_SHORT).show();
 
                     // Invalidates the view to force a redraw
                     v.invalidate();
@@ -204,6 +218,7 @@ public class BrowseActivity extends ActionBarActivity {
         }
     }
 
+    // shoeadapter class used to fill our grid
     public class ShoeAdapter extends BaseAdapter {
         private Context context;
         // references to our shoeData
@@ -293,6 +308,7 @@ public class BrowseActivity extends ActionBarActivity {
                 // Initialize our Shoe Caption
                 shoeInfo = new TextView(context);
                 shoeInfo.setTag("shoeInfo");
+                shoeInfo.setPadding(30, 0, 0, 0);
                 shoeInfo.setVisibility(View.VISIBLE);
 
                 // add our views to the layout
@@ -308,7 +324,7 @@ public class BrowseActivity extends ActionBarActivity {
             shoeView = (ImageView) relativeLayout.findViewWithTag("shoeImage");
             shoeInfo = (TextView) relativeLayout.findViewWithTag("shoeInfo");
             shoeView.setImageResource((Integer) shoeData.get(position).get("imgsrc"));
-            shoeInfo.setText("\t\t" + shoeData.get(position).get("name") + "\n\t\t\t\t\t$" + shoeData.get(position).get("price"));
+            shoeInfo.setText("" + shoeData.get(position).get("name") + "\n$" + shoeData.get(position).get("price"));
 
             return relativeLayout;
         }
