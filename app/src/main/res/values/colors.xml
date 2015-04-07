@@ -19,9 +19,25 @@
     <item name="indigo9" type="color">#283593</item>
     <item name="indigo10" type="color">#1A237E</item>
 
+    <item name="red1" type="color">#FFEBEE</item>
+    <item name="red2" type="color">#FFCDD2</item>
+    <item name="red3" type="color">#EF9A9A</item>
+    <item name="red4" type="color">#E57373</item>
+    <item name="red5" type="color">#EF5350</item>
+    <item name="red6" type="color">#F44336</item>
+    <item name="red7" type="color">#E53935</item>
+    <item name="red8" type="color">#D32F2F</item>
+    <item name="red9" type="color">#C62828</item>
+    <item name="red10" type="color">#B71C1C</item>
+
     <!--  HIGHLIGHT COLORS  -->
     <item name="indigoA100" type="color">#8C9EFF</item>
     <item name="indigoA200" type="color">#536DFE</item>
     <item name="indigoA400" type="color">#3D5AFE</item>
     <item name="indigoA700" type="color">#304FFE</item>
+
+    <item name="redA100" type="color">#FF8A80</item>
+    <item name="redA200" type="color">#FF5252</item>
+    <item name="redA400" type="color">#FF1744</item>
+    <item name="redA700" type="color">#D50000</item>
 </resources>

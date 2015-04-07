@@ -16,7 +16,8 @@
         android:textColor="@color/primary_light"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:textSize="26dp" />
+        android:textSize="26dp"
+        android:onClick="moveToPickUp"/>
 
     <TextView
         android:layout_width="wrap_content"

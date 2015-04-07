@@ -93,4 +93,10 @@ public class CartActivity extends ActionBarActivity {
 
         super.onBackPressed();
     }
+
+    public void moveToPickUp(View v){
+        Intent moveToPickUp = new Intent(v.getContext(), PickUpActivity.class);
+        moveToPickUp.putExtra("cart_items", cartItems);
+        startActivity(moveToPickUp);
+    }
 }

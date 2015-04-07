@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Outfooted Shoes</string>
+    <string name="google_maps_key">AIzaSyDBUQYJdIsNftZgJ3mEUlaf0U-B0odQVlo</string>
 
     <!--WELCOME SCREEN STRINGS-->
     <string name="welcome_header">Welcome to Outfooted Shoes</string>
@@ -14,5 +15,9 @@
 
     <!--CART SCREEN STRINGS-->
     <string name="title_activity_cart">Your Cart</string>
-    <string name="cart_checkout_button">Check Out</string>
+    <string name="cart_checkout_button">Place Order</string>
+
+    <!--PICK UP STRINGS-->
+    <string name="title_activity_pick_up">Pick Up Your Shoes</string>
+    <string name="pick_up_message">Thank you for your order! Please pick up your shoes at the store on the map below.</string>
 </resources>
