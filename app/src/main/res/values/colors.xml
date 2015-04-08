@@ -9,6 +9,7 @@
 
     <!--BASE COLORS-->
     <item name="indigo1" type="color">#E8EAF6</item>
+    <item name="indigo1_5" type="color">#DADCEC</item>
     <item name="indigo2" type="color">#C5CAE9</item>
     <item name="indigo3" type="color">#9FA8DA</item>
     <item name="indigo4" type="color">#7986CB</item>

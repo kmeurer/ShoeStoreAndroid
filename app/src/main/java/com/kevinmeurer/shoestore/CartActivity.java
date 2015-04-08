@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -44,10 +45,15 @@ public class CartActivity extends ActionBarActivity {
                 String currentItem = cartItems.get(i);
                 String[] nameAndPrice = currentItem.split("\n");
                 text += nameAndPrice[0];
-                text += "                      " + nameAndPrice[1] + "\n";
+                text += "\n\t\t\t\t\t\t\t" + nameAndPrice[1] + "\n";
                 totalCost += Double.parseDouble((String) nameAndPrice[1]);
             }
-            text += "______________________\nTOTAL:  $" + totalCost;
+            // Limit our result to display 2 decimals
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(2);
+            df.setMinimumFractionDigits(2);
+            // print our total
+            text += "__________________________\nTOTAL:  $" + df.format(totalCost);
             cartText.setText(text);
         }
         // set a back button on the action bar for user convenience
@@ -81,17 +87,6 @@ public class CartActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-//        Toast.makeText(this, "pressed",
-//                Toast.LENGTH_LONG).show();
-//        View currentView = findViewById(R.id.cartLayout);
-//        Intent moveToBrowse = new Intent(currentView.getContext(), BrowseActivity.class);
-//        moveToBrowse.putExtra("cart_items", cartItems);
-
-        super.onBackPressed();
     }
 
     public void moveToPickUp(View v){

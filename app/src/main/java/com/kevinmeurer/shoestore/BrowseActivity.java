@@ -127,9 +127,9 @@ public class BrowseActivity extends ActionBarActivity {
      */
     protected class cartDragEventListener implements View.OnDragListener {
         // Resolve our Colors for reference. Base color is the color it is stored as.  Lighter is while the drag is happening, lightest if the dragged object enters the cart area
-        int baseColor = getResources().getColor(R.color.indigo4);
-        int lighterColor = getResources().getColor(R.color.indigo6);
-        int lightestColor = getResources().getColor(R.color.indigo8);
+        int baseColor = getResources().getColor(R.color.indigo6);
+        int lighterColor = getResources().getColor(R.color.indigo8);
+        int lightestColor = getResources().getColor(R.color.indigo10);
 
         // override the onDrag function
         public boolean onDrag(View v, DragEvent event) {
@@ -241,34 +241,44 @@ public class BrowseActivity extends ActionBarActivity {
         // In a real app, this would pull data from a src and then load it into the grid, but here we just specify it directly
         private void getShoeInfo(){
             HashMap<String, Object> shoe1 = new HashMap<String, Object>();
-            shoe1.put("price", 50);
+            shoe1.put("price", 129.99);
             shoe1.put("imgsrc", R.drawable.shoe1);
-            shoe1.put("name", "New Balance HG7");
+            shoe1.put("name", "Nike Snakeskin 42");
 
             HashMap<String, Object> shoe2 = new HashMap<String, Object>();
             shoe2.put("price", 50);
-            shoe2.put("imgsrc", R.drawable.shoe1);
-            shoe2.put("name", "New Balance HG7");
+            shoe2.put("imgsrc", R.drawable.shoe2);
+            shoe2.put("name", "Nike DuraForce");
 
             HashMap<String, Object> shoe3 = new HashMap<String, Object>();
-            shoe3.put("price", 50);
-            shoe3.put("imgsrc", R.drawable.shoe1);
-            shoe3.put("name", "New Balance HG7");
+            shoe3.put("price", 99.99);
+            shoe3.put("imgsrc", R.drawable.shoe3);
+            shoe3.put("name", "Nike Tony Hawk X");
 
             HashMap<String, Object> shoe4 = new HashMap<String, Object>();
-            shoe4.put("price", 50);
-            shoe4.put("imgsrc", R.drawable.shoe1);
-            shoe4.put("name", "New Balance HG7");
+            shoe4.put("price", 84.99);
+            shoe4.put("imgsrc", R.drawable.shoe4);
+            shoe4.put("name", "Nike Forward Mesh");
 
             HashMap<String, Object> shoe5 = new HashMap<String, Object>();
-            shoe5.put("price", 50);
-            shoe5.put("imgsrc", R.drawable.shoe1);
-            shoe5.put("name", "New Balance HG7");
+            shoe5.put("price", 100);
+            shoe5.put("imgsrc", R.drawable.shoe5);
+            shoe5.put("name", "Columbia TechLite");
 
             HashMap<String, Object> shoe6 = new HashMap<String, Object>();
-            shoe6.put("price", 50);
-            shoe6.put("imgsrc", R.drawable.shoe1);
-            shoe6.put("name", "New Balance HG7");
+            shoe6.put("price", 60);
+            shoe6.put("imgsrc", R.drawable.shoe6);
+            shoe6.put("name", "Vans Off the Wall");
+
+            HashMap<String, Object> shoe7 = new HashMap<String, Object>();
+            shoe7.put("price", 65.99);
+            shoe7.put("imgsrc", R.drawable.shoe7);
+            shoe7.put("name", "Nike Internationalist");
+
+            HashMap<String, Object> shoe8 = new HashMap<String, Object>();
+            shoe8.put("price", 74.95);
+            shoe8.put("imgsrc", R.drawable.shoe8);
+            shoe8.put("name", "New Balance M775V1");
 
             shoeData = new ArrayList<HashMap<String, Object>>();
             shoeData.add(shoe1);
@@ -277,7 +287,8 @@ public class BrowseActivity extends ActionBarActivity {
             shoeData.add(shoe4);
             shoeData.add(shoe5);
             shoeData.add(shoe6);
-
+            shoeData.add(shoe7);
+            shoeData.add(shoe8);
         }
 
         // constructor fills our data storage with shoe information (text description and img src)
@@ -303,13 +314,13 @@ public class BrowseActivity extends ActionBarActivity {
             LinearLayout relativeLayout;
             ImageView shoeView;
             TextView shoeInfo;
-            int itemBackgroundColor = getResources().getColor(R.color.indigo3);
+            int itemBackgroundColor = getResources().getColor(R.color.indigo1_5);
 
             if (convertView == null) {
 
                 relativeLayout = new LinearLayout(context);
-                relativeLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 750));
                 relativeLayout.setOrientation(LinearLayout.VERTICAL);
+                relativeLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500));
 
                 relativeLayout.setBackgroundColor(itemBackgroundColor);
                 relativeLayout.setPadding(5, 20, 5, 20);
