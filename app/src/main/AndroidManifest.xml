@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+     <!--
+     Project 3
+     Name: Kevin Meurer
+     E-mail: kevin.a.meurer@gmail.com
+     Instructor: Singh
+     COSC 150
+
+     In accordance with the class policies and Georgetown's Honor Code,
+     I certify that, with the exceptions of the lecture notes and those
+     items noted below, I have neither given nor received any assistance
+     on this project.
+
+     Description: Welcome to my application manifest!  Here, I have stored relevant information about the app
+     itself, including my API key for google maps, activity relationships, and general metadata about the app.
+     My application has 4 main activities: welcome, browse, cart, and pick up.  The welcome activity welcomes you
+     to the app.  Clicking a button to get started brings you to browse, where you can drag shoes to the cart at the bottom
+     of the screen using a long press.  These items are stored while the user browses.  When the user clicks on the cart,
+     they are taken to the third activity, the cart screen.  Here, they can view their items and check out. When they click check out,
+     they are taken to a page displaying what they bought and where to pick it up, using an integrated Google Maps fragment.
+
+     Extra Credit Items:  Integrated Google Map Fragment in PickUpActivity rather than linking to a webpage.
+     -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kevinmeurer.shoestore" >
 
@@ -6,14 +30,15 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key"/>
         <activity
-            android:name=".WelcomeActivity"
+            android:name="com.kevinmeurer.shoestore.WelcomeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,25 +47,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BrowseActivity"
+            android:name="com.kevinmeurer.shoestore.BrowseActivity"
             android:label="@string/title_activity_browse" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".WelcomeActivity" />
+                android:value="com.kevinmeurer.shoestore.WelcomeActivity" />
         </activity>
         <activity
-            android:name=".CartActivity"
+            android:name="com.kevinmeurer.shoestore.CartActivity"
             android:label="@string/title_activity_cart" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".BrowseActivity" />
         </activity>
         <activity
-            android:name=".PickUpActivity"
+            android:name="com.kevinmeurer.shoestore.PickUpActivity"
             android:label="@string/title_activity_pick_up" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".BrowseActivity" />
+                android:value="com.kevinmeurer.shoestore.WelcomeActivity" />
         </activity>
     </application>
 

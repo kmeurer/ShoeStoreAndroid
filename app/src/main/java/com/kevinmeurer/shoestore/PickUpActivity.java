@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.app.FragmentTransaction;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -17,7 +17,9 @@ import java.util.ArrayList;
 
 
 public class PickUpActivity extends ActionBarActivity {
+    // stores our cart data
     ArrayList<String> cartItems;
+    // stores the reference to our google map
     MapFragment map;
 
     @Override
@@ -27,7 +29,7 @@ public class PickUpActivity extends ActionBarActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            cartItems = (ArrayList<String>) extras.getStringArrayList("cart_items");
+            cartItems = extras.getStringArrayList("cart_items");
         }
 
         // get our itemized list
@@ -39,18 +41,25 @@ public class PickUpActivity extends ActionBarActivity {
         }
         itemList.setText(text);
 
-        // get our map fragment
-        MapFragment mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.storeMap);
-        GoogleMap map = mapFrag.getMap();
+        int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getBaseContext());
+        // if it's available, we get the map fragment
+        if( status== ConnectionResult.SUCCESS){
+            // get our map fragment
+            MapFragment mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.storeMap);
+            GoogleMap map = mapFrag.getMap();
+            // if our map exists, we add the marker to the map
+            if (map != null){
+                // add a marker to the map
+                MarkerOptions markerOptions = new MarkerOptions();
+                LatLng place = new LatLng(38.908864, -77.072298);
+                markerOptions.position(place);
+                markerOptions.title("Outfooted Shoes");
 
-        // add a marker to the map
-        MarkerOptions markerOptions = new MarkerOptions();
-        LatLng place = new LatLng(38.908864, -77.072298);
-        markerOptions.position(place);
-        markerOptions.title("Outfooted Shoes");
-
-        // add the marker to our map
-        map.addMarker(markerOptions);
+                // add the marker to our map
+                map.addMarker(markerOptions);
+                System.gc();
+            }
+        }
     }
 
 

@@ -1,43 +1,55 @@
 package com.kevinmeurer.shoestore;
 
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.util.Log;
 import android.view.View;
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class CartActivity extends ActionBarActivity {
-    ArrayList<String> cartItems;
+    // stores the items from our cart
+    ArrayList<String> cartItems = new ArrayList<String>();
 
+    /*
+        onCreate: Creates our activity by pulling any extras passed in, fills the text view with cart info,
+        and sets whether the place order is clickable(not clickable if no items in cart).
+         */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-
+        // Get the items from the cart
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             cartItems = (ArrayList<String>) extras.getStringArrayList("cart_items");
         }
 
+        // Get our place order button so we can later make it not clickable if we have nothing in the cart.
+        Button orderButton = (Button) findViewById(R.id.checkoutButton);
+
+        // display information about the cart
         TextView cartText = (TextView) findViewById(R.id.cartItems);
         if (cartItems.size() == 0){
             cartText.setText("Your cart is currently empty.\n\nContinue shopping and come back when you are ready to check out!");
+            if (orderButton != null){
+                orderButton.setClickable(false);
+            }
         }
         else {
-            Toast.makeText(this, "you have " + cartItems.size() + " items in your cart",
-                    Toast.LENGTH_SHORT).show();
+            // Limit our result to display 2 decimals
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(2);
+            df.setMinimumFractionDigits(2);
+
             // Create a string to be added to the text view
             String text = "";
             double totalCost = 0;
@@ -48,17 +60,11 @@ public class CartActivity extends ActionBarActivity {
                 text += "\n\t\t\t\t\t\t\t" + nameAndPrice[1] + "\n";
                 totalCost += Double.parseDouble((String) nameAndPrice[1]);
             }
-            // Limit our result to display 2 decimals
-            DecimalFormat df = new DecimalFormat();
-            df.setMaximumFractionDigits(2);
-            df.setMinimumFractionDigits(2);
+
             // print our total
             text += "__________________________\nTOTAL:  $" + df.format(totalCost);
             cartText.setText(text);
         }
-        // set a back button on the action bar for user convenience
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
     }
 
 
@@ -89,9 +95,17 @@ public class CartActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // move to the pick up view, called when we place our order
     public void moveToPickUp(View v){
         Intent moveToPickUp = new Intent(v.getContext(), PickUpActivity.class);
         moveToPickUp.putExtra("cart_items", cartItems);
         startActivity(moveToPickUp);
+    }
+
+    // move to the browse view.  called if we want to go back
+    public void moveToBrowse(View v){
+        Intent moveToBrowseView = new Intent(v.getContext(), BrowseActivity.class);
+        moveToBrowseView.putExtra("cart_items", cartItems);
+        startActivity(moveToBrowseView);
     }
 }

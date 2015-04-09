@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.*;
 import android.widget.*;
 import android.content.ClipData;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,7 +36,7 @@ public class BrowseActivity extends ActionBarActivity {
         // get any cart items that have been passed to it from activity transitions
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            ArrayList<String> cartItems = (ArrayList<String>) extras.getStringArrayList("cart_items");
+            cartItems = (ArrayList<String>) extras.getStringArrayList("cart_items");
         }
 
         // set the content view with the layout
@@ -280,6 +282,16 @@ public class BrowseActivity extends ActionBarActivity {
             shoe8.put("imgsrc", R.drawable.shoe8);
             shoe8.put("name", "New Balance M775V1");
 
+            HashMap<String, Object> shoe9 = new HashMap<String, Object>();
+            shoe9.put("price", 49.99);
+            shoe9.put("imgsrc", R.drawable.shoe9);
+            shoe9.put("name", "New Balance MX623");
+
+            HashMap<String, Object> shoe10 = new HashMap<String, Object>();
+            shoe10.put("price", 60.00);
+            shoe10.put("imgsrc", R.drawable.shoe10);
+            shoe10.put("name", "Asics Gel Unifire");
+
             shoeData = new ArrayList<HashMap<String, Object>>();
             shoeData.add(shoe1);
             shoeData.add(shoe2);
@@ -289,6 +301,8 @@ public class BrowseActivity extends ActionBarActivity {
             shoeData.add(shoe6);
             shoeData.add(shoe7);
             shoeData.add(shoe8);
+            shoeData.add(shoe9);
+            shoeData.add(shoe10);
         }
 
         // constructor fills our data storage with shoe information (text description and img src)
@@ -320,7 +334,7 @@ public class BrowseActivity extends ActionBarActivity {
 
                 relativeLayout = new LinearLayout(context);
                 relativeLayout.setOrientation(LinearLayout.VERTICAL);
-                relativeLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 500));
+                relativeLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 550));
 
                 relativeLayout.setBackgroundColor(itemBackgroundColor);
                 relativeLayout.setPadding(5, 20, 5, 20);
@@ -346,10 +360,17 @@ public class BrowseActivity extends ActionBarActivity {
                 relativeLayout = (LinearLayout) convertView;
             }
 
+            // Limit our prices to display 2 decimals
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(2);
+            df.setMinimumFractionDigits(2);
+
             shoeView = (ImageView) relativeLayout.findViewWithTag("shoeImage");
             shoeInfo = (TextView) relativeLayout.findViewWithTag("shoeInfo");
             shoeView.setImageResource((Integer) shoeData.get(position).get("imgsrc"));
-            shoeInfo.setText("" + shoeData.get(position).get("name") + "\n$" + shoeData.get(position).get("price"));
+            shoeInfo.setText("" + shoeData.get(position).get("name") + "\n$" + df.format(shoeData.get(position).get("price")));
+            // clean unused bitmaps
+            System.gc();
 
             return relativeLayout;
         }

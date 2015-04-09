@@ -1,11 +1,9 @@
 package com.kevinmeurer.shoestore;
 
-import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
 
@@ -42,8 +40,11 @@ public class WelcomeActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Move to the browse activity, called by our main button
     public void moveToBrowse(View v){
+        // create an intent
         Intent moveToBrowse = new Intent(v.getContext(), BrowseActivity.class);
+        // start the activity
         startActivity(moveToBrowse);
     }
 }

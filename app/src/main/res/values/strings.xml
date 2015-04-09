@@ -15,6 +15,7 @@
 
     <!--CART SCREEN STRINGS-->
     <string name="title_activity_cart">Your Cart</string>
+    <string name="cart_return_button">Continue Browsing</string>
     <string name="cart_checkout_button">Place Order</string>
 
     <!--PICK UP STRINGS-->
